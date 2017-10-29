@@ -1,0 +1,25 @@
+= Testing expected exception on Spring startup
+
+Test that the application context failed to init due the the expected reason using JUnit and Spring, for example due to BeanCreationException.
+
+== Problem
+
+When writing full Spring (or Spring Boot) integration tests, you may want to test that the application didn't start.
+
+Unfortunately JUnit fails as soon as the application context throws an exception not even running the test, so it cannot be tested.
+
+Trivial solution is to move the application initializing inside a `@Test` method by manually calling the `main()` or starting via creating the Spring context manually.
+These solutions are far from ideal, for one, the test annotations are not processed (ex. @SpringBootTest, @ActiveProfile, etc.), also you are rewriting the logic already in Spring.
+
+I have attempted to create some solutions to address these problems here.
+All of the extends the original Spring Junit runner to add more functionality.
+
+== Solutions
+
+ - `ContextFailsUsingInspector`: Using just an annotation to see what exception happened
+ - `ContextFailsUsingInspector`: Same as the previous, but using an inspector
+ - `ContextFailsUsingExpectedException`: ClassRule ExpectedException to expect for exceptions in @BeforeClass
+
+== Limitations
+
+You need at least an empty `@Test` method, otherwise Junit and Spring will not try to build the context.
