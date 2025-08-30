@@ -16,9 +16,15 @@ All of the extends the original Spring Junit runner to add more functionality.
 
 == Solutions
 
- - `ContextFailsUsingInspector`: Using just an annotation to see what exception happened
- - `ContextFailsUsingInspector`: Same as the previous, but using an inspector
- - `ContextFailsUsingExpectedException`: ClassRule ExpectedException to expect for exceptions in @BeforeClass
+=== JUnit 4 (Vintage)
+
+ - `ContextFailsUsingAnnotationTest`: Using just an annotation to see what exception happened
+ - `ContextFailsUsingInspectorTest`: Same as the previous, but using an inspector
+ - `ContextFailsUsingExpectedExceptionTest`: ClassRule ExpectedException to expect for exceptions in @BeforeClass
+
+=== JUnit 5 (Jupiter)
+
+- `ContextFailsUsingValidatorTest`: Using AssertJ to validate anything about that exception
 
 == Limitations
 
